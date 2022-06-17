@@ -1,6 +1,6 @@
 enchant();
 
-const ENEMY_NUMBER = 100;
+const ENEMY_NUMBER = 1000;
 const cell_size = 50;
 const y_start = 50;
 const x_start = 150;
