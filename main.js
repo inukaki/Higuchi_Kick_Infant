@@ -111,10 +111,10 @@ function GameScene() {
   kill=0;
   var red = new Sprite(310, 410);
   red.image = core.assets["red.png"];
-  red.x = 495;
-  red.y = 695;
-  red.scaleX = 0.7;
-  red.scaleY = 0.7;
+  red.x = 494;
+  red.y = 694;
+  red.scaleX = 0.72;
+  red.scaleY = 0.72;
   gamescene.addChild(red);
 
   ene = [];
