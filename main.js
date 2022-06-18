@@ -295,7 +295,7 @@ function ResultScene() {
 
   var reload = new Sprite(128, 128);
   reload.image = core.assets["リロードのフリーアイコン.png"];
-  reload.x = 300;
+  reload.x = 600;
   reload.y = 950;
   reload.scaleX=0.7;
   reload.scaleY=0.7;
