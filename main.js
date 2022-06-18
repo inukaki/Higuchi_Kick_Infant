@@ -1,13 +1,7 @@
 enchant();
 
 const ENEMY_NUMBER = 1000;
-const cell_size = 50;
-const y_start = 50;
-const x_start = 150;
 const time_max = 40;
-const cpu_waittime = 2;
-const search_depth = 1;
-var cpu_varsion = 2;
 const font = '60px 游ゴシック';
 
 var Enemy = Class.create(Sprite, {
@@ -66,37 +60,35 @@ function next() {
 }
 
 function ki() {
-  var after_kick = new Sprite(211, 365);
-  after_kick.image = core.assets["after_kick.jpg"];
-  after_kick.x = 150;
-  after_kick.y = 500;
-  after_kick.scaleX = 2;
-  after_kick.scaleY = 2;
-  gamescene.addChild(after_kick);
+  // var after_kick = new Sprite(211, 365);
+  // after_kick.image = core.assets["after_kick.jpg"];
+  // after_kick.x = 150;
+  // after_kick.y = 500;
+  // after_kick.scaleX = 2;
+  // after_kick.scaleY = 2;
+  // gamescene.addChild(after_kick);
+  higuti.frame = 1;
   kick_flag = 6;
   ene[count].frame += 2;
   next();
-  // count++;
-  // for(var i=0;i<ENEMY_NUMBER;i++){
-  //   ene[i].y+=300;
-  // }
 }
 
 function unki() {
-  var before_kick = new Sprite(200, 360);
-  before_kick.image = core.assets["before_kick.jpg"];
-  before_kick.x = 150;
-  before_kick.y = 500;
-  before_kick.scaleX = 2;
-  before_kick.scaleY = 2;
-  gamescene.addChild(before_kick);
+  // var before_kick = new Sprite(200, 360);
+  // before_kick.image = core.assets["before_kick.jpg"];
+  // before_kick.x = 150;
+  // before_kick.y = 500;
+  // before_kick.scaleX = 2;
+  // before_kick.scaleY = 2;
+  // gamescene.addChild(before_kick);
+  higuti.frame = 0;
   kick_flag = 0;
   // next();
 }
 
 window.onload = function() {
   core = new Core(900, 1600);
-  core.preload("kill.png","result.png","red.png", "white.png", "enemy.png", "good.png", "bad.png", "kick.jpg", "unkick.jpg", "before_kick.jpg", "after_kick.jpg", "tsugaku_boy.png", "akachan_onnanoko.png", "kick_boxing_man.png");
+  core.preload("higuti.png","kill.png","result.png","red.png", "white.png", "enemy.png", "good.png", "bad.png", "kick.jpg", "unkick.jpg", "before_kick.jpg", "after_kick.jpg", "tsugaku_boy.png", "akachan_onnanoko.png", "kick_boxing_man.png");
   core.fps = 30;
   core.onload = function() {
     core.replaceScene(GameScene());
@@ -109,6 +101,16 @@ function GameScene() {
   gamescene.backgroundColor = "rgb(209, 227, 197)";
 
   kill=0;
+
+  higuti = new Sprite(240,400);
+  higuti.image = core.assets["higuti.png"];
+  higuti.frame = 0;
+  higuti.x = 150;
+  higuti.y = 490;
+  higuti.scaleX = 1.8;
+  higuti.scaleY = 1.8;
+  gamescene.addChild(higuti);
+
   var red = new Sprite(310, 410);
   red.image = core.assets["red.png"];
   red.x = 495;
@@ -218,19 +220,14 @@ function ResultScene() {
   background.y = 300;
   resultscene.addChild(background);
   resultLabel = new Label();
-  resultLabel.x = 350;
+  resultLabel.x = 330;
   resultLabel.y = 400;
   resultLabel.color = 'black';
   resultLabel.font = '80px 游ゴシック';
   resultLabel.text = `スコア　　${score}`;
   resultscene.addChild(resultLabel);
-  // var kill = new Sprite(570,282);
-  // kill.image = core.assets["kill.png"];
-  // kill.x=158;
-  // kill.y = 350;
-  // resultscene.addChild(kill);
   killLabel = new Label();
-  killLabel.x = 350;
+  killLabel.x = 330;
   killLabel.y = 700;
   killLabel.color = 'black';
   killLabel.font = '80px 游ゴシック';
