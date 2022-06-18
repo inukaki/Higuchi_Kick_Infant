@@ -87,7 +87,7 @@ function unki() {
 
 window.onload = function() {
   core = new Core(900, 1600);
-  core.preload("higuti.png", "kill.png", "result.png", "red.png", "white.png", "enemy.png", "good.png", "bad.png", "kick.jpg", "unkick.jpg", "before_kick.jpg", "after_kick.jpg", "tsugaku_boy.png", "akachan_onnanoko.png", "kick_boxing_man.png");
+  core.preload("reload_24.png","リロードのフリーアイコン.png", "higuti.png", "kill.png", "result.png", "red.png", "white.png", "enemy.png", "good.png", "bad.png", "kick.jpg", "unkick.jpg", "before_kick.jpg", "after_kick.jpg", "tsugaku_boy.png", "akachan_onnanoko.png", "kick_boxing_man.png");
   core.fps = 30;
   core.keybind(77, 'm');
   core.keybind(78, 'n');
@@ -168,6 +168,8 @@ function GameScene() {
   n.y = 1230;
   n.font = font;
   gamescene.addChild(n);
+
+
   var kick = new Kick();
   var unkick = new Unkick();
   kick.addEventListener("touchstart", function(e) {
@@ -193,12 +195,24 @@ function GameScene() {
     update_score();
     next();
   });
+  var reload = new Sprite(128, 128);
+  reload.image = core.assets["リロードのフリーアイコン.png"];
+  reload.x = 760;
+  reload.y = 10;
+  reload.scaleX = 0.7;
+  reload.scaleY = 0.7;
+  gamescene.addChild(reload);
+  reload.addEventListener("touchstart", function(e) {
+    core.replaceScene(GameScene());
+  });
+
   time = time_max;
   timeLabel = new Label();
   timeLabel.x = 50;
   timeLabel.y = 50;
   timeLabel.color = 'black';
   timeLabel.font = font;
+  timeLabel.text = `残り時間　${time}`;
   gamescene.addChild(timeLabel);
 
   var frame = 0;
@@ -243,6 +257,7 @@ function GameScene() {
 
     if (frame === 30) {
       frame = 0;
+      time--;
       timeLabel.text = `残り時間　${time}`;
       gamescene.removeChild(timeLabel);
       gamescene.addChild(timeLabel);
@@ -250,7 +265,6 @@ function GameScene() {
 
         core.pushScene(ResultScene());
       }
-      time--;
     }
   });
 
@@ -279,6 +293,16 @@ function ResultScene() {
   killLabel.text = `蹴った幼児の数　　${kill}`;
   resultscene.addChild(killLabel);
 
+  var reload = new Sprite(128, 128);
+  reload.image = core.assets["リロードのフリーアイコン.png"];
+  reload.x = 170;
+  reload.y = 320;
+  reload.scaleX=0.7;
+  reload.scaleY=0.7;
+  resultscene.addChild(reload);
+  reload.addEventListener("touchstart", function(e) {
+    core.replaceScene(GameScene());
+  });
 
   return resultscene;
 }
