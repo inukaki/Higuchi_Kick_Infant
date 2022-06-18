@@ -46,8 +46,7 @@ var Unkick = Class.create(Sprite, {
 });
 
 function update_score() {
-  console.log(score);
-  scoreLabel.text =`スコア　　${score}`;
+  scoreLabel.text = `スコア　　${score}`;
   gamescene.removeChild(scoreLabel);
   gamescene.addChild(scoreLabel);
 }
@@ -88,8 +87,10 @@ function unki() {
 
 window.onload = function() {
   core = new Core(900, 1600);
-  core.preload("higuti.png","kill.png","result.png","red.png", "white.png", "enemy.png", "good.png", "bad.png", "kick.jpg", "unkick.jpg", "before_kick.jpg", "after_kick.jpg", "tsugaku_boy.png", "akachan_onnanoko.png", "kick_boxing_man.png");
+  core.preload("higuti.png", "kill.png", "result.png", "red.png", "white.png", "enemy.png", "good.png", "bad.png", "kick.jpg", "unkick.jpg", "before_kick.jpg", "after_kick.jpg", "tsugaku_boy.png", "akachan_onnanoko.png", "kick_boxing_man.png");
   core.fps = 30;
+  core.keybind(77, 'm');
+  core.keybind(78, 'n');
   core.onload = function() {
     core.replaceScene(GameScene());
   }
@@ -100,9 +101,9 @@ function GameScene() {
   gamescene = new Scene();
   gamescene.backgroundColor = "rgb(209, 227, 197)";
 
-  kill=0;
+  kill = 0;
 
-  higuti = new Sprite(240,400);
+  higuti = new Sprite(240, 400);
   higuti.image = core.assets["higuti.png"];
   higuti.frame = 0;
   higuti.x = 150;
@@ -157,6 +158,16 @@ function GameScene() {
   scoreLabel.text = `スコア　　${score}`;
   gamescene.addChild(scoreLabel);
 
+  var m = new Label('M');
+  m.x = 580;
+  m.y = 1230;
+  m.font = font;
+  gamescene.addChild(m);
+  var n = new Label('N');
+  n.x = 285;
+  n.y = 1230;
+  n.font = font;
+  gamescene.addChild(n);
   var kick = new Kick();
   var unkick = new Unkick();
   kick.addEventListener("touchstart", function(e) {
@@ -189,8 +200,41 @@ function GameScene() {
   timeLabel.color = 'black';
   timeLabel.font = font;
   gamescene.addChild(timeLabel);
+
   var frame = 0;
+  m_flag = 0;
+  n_flag = 0;
   gamescene.addEventListener('enterframe', function(e) {
+    if (core.input.m) {
+      if (m_flag === 0) {
+        if (ene[count].kind === 0) {
+          // gamescene.addChild(bad);
+          score -= 100;
+        } else {
+          // gamescene.addChild(good);
+          kill++;
+          score += 100;
+        }
+        update_score();
+        ki();
+        m_flag = 1;
+      }
+    } else
+      m_flag = 0;
+    if (core.input.n) {
+      if (n_flag === 0) {
+        if (ene[count].kind === 1) {
+          // gamescene.addChild(bad);
+          score -= 100;
+        } else {
+          // gamescene.addChild(good);
+          score += 100;
+        }
+        update_score();
+        next();
+        n_flag = 1;
+      }
+    } else n_flag = 0;
     kick_flag--;
     if (kick_flag === 1) {
       unki();
@@ -204,7 +248,7 @@ function GameScene() {
       gamescene.addChild(timeLabel);
       if (time === 0) {
 
-          core.pushScene(ResultScene());
+        core.pushScene(ResultScene());
       }
       time--;
     }
@@ -212,6 +256,7 @@ function GameScene() {
 
   return gamescene;
 }
+
 function ResultScene() {
   resultscene = new Scene();
   var background = new Sprite(600, 800);
