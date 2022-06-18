@@ -198,7 +198,7 @@ function GameScene() {
   var reload = new Sprite(128, 128);
   reload.image = core.assets["リロードのフリーアイコン.png"];
   reload.x = 760;
-  reload.y = 10;
+  reload.y = 1450;
   reload.scaleX = 0.7;
   reload.scaleY = 0.7;
   gamescene.addChild(reload);
