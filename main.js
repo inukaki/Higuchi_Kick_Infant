@@ -87,7 +87,28 @@ function unki() {
 
 window.onload = function() {
   core = new Core(900, 1600);
-  core.preload("reload_24.png","リロードのフリーアイコン.png", "higuti.png", "kill.png", "result.png", "red.png", "white.png", "enemy.png", "good.png", "bad.png", "kick.jpg", "unkick.jpg", "before_kick.jpg", "after_kick.jpg", "tsugaku_boy.png", "akachan_onnanoko.png", "kick_boxing_man.png");
+  core.preload(
+    "reload_24.png",
+    "リロードのフリーアイコン.png",
+    "higuti.png",
+    "kill.png",
+    "result.png",
+    "red.png",
+    "white.png",
+    "enemy.png",
+    "good.png",
+    "bad.png",
+    "kick.jpg",
+    "unkick.jpg",
+    "before_kick.jpg",
+    "after_kick.jpg",
+    "tsugaku_boy.png",
+    "akachan_onnanoko.png",
+    "kick_boxing_man.png",
+    "Onoma-Ding04-1(Long).mp3",
+    "Quiz-Wrong_Buzzer02-1.mp3",
+    "Quiz-Correct_Answer02-1.mp3"
+  );
   core.fps = 30;
   core.keybind(77, 'm');
   core.keybind(78, 'n');
@@ -176,10 +197,14 @@ function GameScene() {
     if (ene[count].kind === 0) {
       // gamescene.addChild(bad);
       score -= 100;
+        var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
+        audio.play();
     } else {
       // gamescene.addChild(good);
       kill++;
       score += 100;
+        var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
+        audio.play();
     }
     update_score();
     ki();
@@ -188,9 +213,13 @@ function GameScene() {
     if (ene[count].kind === 1) {
       // gamescene.addChild(bad);
       score -= 100;
+        var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
+        audio.play();
     } else {
       // gamescene.addChild(good);
       score += 100;
+        var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
+        audio.play();
     }
     update_score();
     next();
@@ -224,10 +253,14 @@ function GameScene() {
         if (ene[count].kind === 0) {
           // gamescene.addChild(bad);
           score -= 100;
+            var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
+            audio.play();
         } else {
           // gamescene.addChild(good);
           kill++;
           score += 100;
+            var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
+            audio.play();
         }
         update_score();
         ki();
@@ -240,9 +273,13 @@ function GameScene() {
         if (ene[count].kind === 1) {
           // gamescene.addChild(bad);
           score -= 100;
+            var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
+            audio.play();
         } else {
           // gamescene.addChild(good);
           score += 100;
+            var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
+            audio.play();
         }
         update_score();
         next();
