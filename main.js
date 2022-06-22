@@ -197,14 +197,14 @@ function GameScene() {
     if (ene[count].kind === 0) {
       // gamescene.addChild(bad);
       score -= 100;
-        var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
-        audio.play();
+        // var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
+        // audio.play();
     } else {
       // gamescene.addChild(good);
       kill++;
       score += 100;
-        var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
-        audio.play();
+        // var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
+        // audio.play();
     }
     update_score();
     ki();
@@ -213,13 +213,13 @@ function GameScene() {
     if (ene[count].kind === 1) {
       // gamescene.addChild(bad);
       score -= 100;
-        var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
-        audio.play();
+        // var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
+        // audio.play();
     } else {
       // gamescene.addChild(good);
       score += 100;
-        var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
-        audio.play();
+        // var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
+        // audio.play();
     }
     update_score();
     next();
@@ -253,14 +253,14 @@ function GameScene() {
         if (ene[count].kind === 0) {
           // gamescene.addChild(bad);
           score -= 100;
-            var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
-            audio.play();
+            // var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
+            // audio.play();
         } else {
           // gamescene.addChild(good);
           kill++;
           score += 100;
-            var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
-            audio.play();
+            // var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
+            // audio.play();
         }
         update_score();
         ki();
@@ -273,13 +273,13 @@ function GameScene() {
         if (ene[count].kind === 1) {
           // gamescene.addChild(bad);
           score -= 100;
-            var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
-            audio.play();
+            // var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
+            // audio.play();
         } else {
           // gamescene.addChild(good);
           score += 100;
-            var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
-            audio.play();
+            // var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
+            // audio.play();
         }
         update_score();
         next();
