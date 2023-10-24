@@ -90,6 +90,8 @@ window.onload = function() {
   core.preload(
     "reload_24.png",
     "リロードのフリーアイコン.png",
+    "ボリュームOFFアイコン.png",
+    "ボリュームアイコン　3.png",
     "higuti.png",
     "kill.png",
     "result.png",
@@ -204,6 +206,8 @@ function GameScene() {
   var correctsound_count = 0;
   var wrongsound_count = 0;
   // var Wrong_audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
+  var volume_flag = 0;
+
   kick.addEventListener("touchstart", function(e) {
     // Wrong_audio.stop();
     // Correct_audio.stop();
@@ -212,7 +216,7 @@ function GameScene() {
       score -= 100;
         // var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
         // Wrong_audio.currentTime;
-        Wrong_audio[wrongsound_count%sound_num].play();
+      if(volume_flag===1)  Wrong_audio[wrongsound_count%sound_num].play();
         wrongsound_count++;
     } else {
       // gamescene.addChild(good);
@@ -220,7 +224,7 @@ function GameScene() {
       score += 100;
         // var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
         // Correct_audio.currentTime;
-        Correct_audio[correctsound_count%sound_num].play();
+        if(volume_flag===1)Correct_audio[correctsound_count%sound_num].play();
         correctsound_count++;
     }
     update_score();
@@ -231,13 +235,13 @@ function GameScene() {
       // gamescene.addChild(bad);
       score -= 100;
         // var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
-        Wrong_audio[wrongsound_count%sound_num].play();
+        if(volume_flag===1)Wrong_audio[wrongsound_count%sound_num].play();
         wrongsound_count++;
     } else {
       // gamescene.addChild(good);
       score += 100;
         // var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
-        Correct_audio[correctsound_count%sound_num].play();
+        if(volume_flag===1)Correct_audio[correctsound_count%sound_num].play();
         correctsound_count++;
     }
     update_score();
@@ -253,6 +257,29 @@ function GameScene() {
   reload.addEventListener("touchstart", function(e) {
     core.replaceScene(GameScene());
   });
+  // ボリュームのオンオフを切り替える
+  var volume = new Sprite(128, 128);
+  volume.image = core.assets["ボリュームOFFアイコン.png"];
+  volume.x = 760;
+  volume.y = 20;
+  volume.scaleX = 0.7;
+  volume.scaleY = 0.7;
+  gamescene.addChild(volume);
+  volume.addEventListener("touchstart", function(e) {
+    if (volume_flag === 0) {
+      volume_flag = 1;
+      volume.image = core.assets["ボリュームアイコン　3.png"];
+      // Correct_audio.volume = 0.0;
+      // Wrong_audio.volume = 0.0;
+    } else {
+      volume_flag = 0;
+      volume.image = core.assets["ボリュームOFFアイコン.png"];
+      // Correct_audio.volume = 1.0;
+      // Wrong_audio.volume = 1.0;
+    }
+  });
+
+
 
   time = time_max;
   timeLabel = new Label();
@@ -274,7 +301,7 @@ function GameScene() {
           score -= 100;
             // var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
             // audio.play();
-        Wrong_audio[wrongsound_count%sound_num].play();
+            if(volume_flag===1)Wrong_audio[wrongsound_count%sound_num].play();
         wrongsound_count++;
         } else {
           // gamescene.addChild(good);
@@ -282,7 +309,7 @@ function GameScene() {
           score += 100;
             // var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
             // audio.play();
-          Correct_audio[correctsound_count%sound_num].play();
+            if(volume_flag===1)Correct_audio[correctsound_count%sound_num].play();
           correctsound_count++;
         }
         update_score();
@@ -298,7 +325,7 @@ function GameScene() {
           score -= 100;
             // var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
             // audio.play();
-        Wrong_audio[wrongsound_count%sound_num].play();
+            if(volume_flag===1)Wrong_audio[wrongsound_count%sound_num].play();
         wrongsound_count++;
         } else {
           // gamescene.addChild(good);
@@ -306,7 +333,7 @@ function GameScene() {
             // var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
             // audio.play();
             
-          Correct_audio[correctsound_count%sound_num].play();
+            if(volume_flag===1)Correct_audio[correctsound_count%sound_num].play();
           correctsound_count++;
         }
         update_score();
