@@ -116,6 +116,13 @@ window.onload = function() {
     core.replaceScene(GameScene());
   }
   core.start();
+  Correct_audio = [];
+  Wrong_audio = [];
+  sound_num = 20;
+  for (var i = 0; i < sound_num; i++) {
+    Correct_audio[i] = new Audio('Quiz-Correct_Answer02-1.mp3');
+    Wrong_audio[i] = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
+  }
 }
 
 function GameScene() {
@@ -193,18 +200,28 @@ function GameScene() {
 
   var kick = new Kick();
   var unkick = new Unkick();
+  // var Correct_audio = new Audio('Quiz-Correct_Answer02-1.mp3');
+  var correctsound_count = 0;
+  var wrongsound_count = 0;
+  // var Wrong_audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
   kick.addEventListener("touchstart", function(e) {
+    // Wrong_audio.stop();
+    // Correct_audio.stop();
     if (ene[count].kind === 0) {
       // gamescene.addChild(bad);
       score -= 100;
         // var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
-        // audio.play();
+        // Wrong_audio.currentTime;
+        Wrong_audio[wrongsound_count%sound_num].play();
+        wrongsound_count++;
     } else {
       // gamescene.addChild(good);
       kill++;
       score += 100;
         // var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
-        // audio.play();
+        // Correct_audio.currentTime;
+        Correct_audio[correctsound_count%sound_num].play();
+        correctsound_count++;
     }
     update_score();
     ki();
@@ -214,12 +231,14 @@ function GameScene() {
       // gamescene.addChild(bad);
       score -= 100;
         // var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
-        // audio.play();
+        Wrong_audio[wrongsound_count%sound_num].play();
+        wrongsound_count++;
     } else {
       // gamescene.addChild(good);
       score += 100;
         // var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
-        // audio.play();
+        Correct_audio[correctsound_count%sound_num].play();
+        correctsound_count++;
     }
     update_score();
     next();
@@ -255,12 +274,16 @@ function GameScene() {
           score -= 100;
             // var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
             // audio.play();
+        Wrong_audio[wrongsound_count%sound_num].play();
+        wrongsound_count++;
         } else {
           // gamescene.addChild(good);
           kill++;
           score += 100;
             // var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
             // audio.play();
+          Correct_audio[correctsound_count%sound_num].play();
+          correctsound_count++;
         }
         update_score();
         ki();
@@ -275,11 +298,16 @@ function GameScene() {
           score -= 100;
             // var audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
             // audio.play();
+        Wrong_audio[wrongsound_count%sound_num].play();
+        wrongsound_count++;
         } else {
           // gamescene.addChild(good);
           score += 100;
             // var audio = new Audio('Quiz-Correct_Answer02-1.mp3');
             // audio.play();
+            
+          Correct_audio[correctsound_count%sound_num].play();
+          correctsound_count++;
         }
         update_score();
         next();
