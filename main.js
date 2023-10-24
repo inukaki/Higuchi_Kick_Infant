@@ -1,6 +1,6 @@
 enchant();
 
-const ENEMY_NUMBER = 1000;
+const ENEMY_NUMBER = 1400;
 const time_max = 40;
 const font = '60px 游ゴシック';
 
