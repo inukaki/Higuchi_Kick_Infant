@@ -91,7 +91,7 @@ window.onload = function() {
     "reload_24.png",
     "リロードのフリーアイコン.png",
     "ボリュームOFFアイコン.png",
-    "ボリュームアイコン　3.png",
+    "ボリュームアイコン.png",
     "higuti.png",
     "kill.png",
     "result.png",
@@ -268,7 +268,7 @@ function GameScene() {
   volume.addEventListener("touchstart", function(e) {
     if (volume_flag === 0) {
       volume_flag = 1;
-      volume.image = core.assets["ボリュームアイコン　3.png"];
+      volume.image = core.assets["ボリュームアイコン.png"];
       // Correct_audio.volume = 0.0;
       // Wrong_audio.volume = 0.0;
     } else {
