@@ -3,6 +3,7 @@ enchant();
 const ENEMY_NUMBER = 1400;
 const time_max = 40;
 const font = '60px 游ゴシック';
+var volume_flag = 0;
 
 var Enemy = Class.create(Sprite, {
   initialize: function(rand, i) {
@@ -206,7 +207,6 @@ function GameScene() {
   var correctsound_count = 0;
   var wrongsound_count = 0;
   // var Wrong_audio = new Audio('Quiz-Wrong_Buzzer02-1.mp3');
-  var volume_flag = 0;
 
   kick.addEventListener("touchstart", function(e) {
     // Wrong_audio.stop();
@@ -259,7 +259,8 @@ function GameScene() {
   });
   // ボリュームのオンオフを切り替える
   var volume = new Sprite(128, 128);
-  volume.image = core.assets["ボリュームOFFアイコン.png"];
+  if(volume_flag===0)volume.image = core.assets["ボリュームOFFアイコン.png"];
+  else volume.image = core.assets["ボリュームアイコン.png"];
   volume.x = 760;
   volume.y = 20;
   volume.scaleX = 0.7;
