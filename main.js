@@ -9,7 +9,7 @@ var Enemy = Class.create(Sprite, {
   initialize: function(rand, i) {
     Sprite.call(this, 300, 400);
     this.kind = rand;
-    this.image = core.assets["enemy.png"];
+    this.image = core.assets["enemy2.png"];
     this.frame = rand;
     this.x = 500;
     this.y = 700 - 300 * i;
@@ -98,7 +98,7 @@ window.onload = function() {
     "result.png",
     "red.png",
     "white.png",
-    "enemy.png",
+    "enemy2.png",
     "good.png",
     "bad.png",
     "kick.jpg",
